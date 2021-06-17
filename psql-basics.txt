@@ -1,6 +1,8 @@
 // For Linux //
 
-To enter `psql` run `sudo -i -u postgres`. This connects you to the `postgres` account on your server.
+To enter `psql` run `sudo -i -u postgres`. 
+This connects you to the `postgres` account on your server.
+Then `psql` to enter psql
 
 // quit psql
 `\q` // takes you to postgres command prompt

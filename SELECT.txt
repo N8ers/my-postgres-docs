@@ -1,0 +1,13 @@
+// SELECT
+
+// clauses:
+DISTINCT - only returns distinct rows
+ORDER BY - sorts rows
+WHERE - filters rows
+LIMIT - gets a subset of rows
+FETCH - gets a subset of rows
+GROUP BY - groups rows into groups
+HAVING - filter groups
+JOIN - join tables with (INNER JOIN, LEFT JOIN, FULL OUTER JOIN, CROSS JOIN)
+set operations - UNION, INTERSECT, EXCEPT 
+// TODO: what are 'set operations'?
