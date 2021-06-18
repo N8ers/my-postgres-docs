@@ -11,3 +11,9 @@ HAVING - filter groups
 JOIN - join tables with (INNER JOIN, LEFT JOIN, FULL OUTER JOIN, CROSS JOIN)
 set operations - UNION, INTERSECT, EXCEPT 
 // TODO: what are 'set operations'?
+
+// select retrieves data from a single tables
+SELECT item_we_want, another_item FROM table_name;
+
+// expression
+SELECT first_name || ' ' || last_name FROM customer;
