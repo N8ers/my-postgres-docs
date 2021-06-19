@@ -1,0 +1,11 @@
+// you can change the name of the column you return
+
+SELECT column_name AS alias_name FROM table_name;
+
+the `AS` keyword is actually optional the query below is the same as the one above
+
+SELECT column_name alias_name FROM table_name;
+
+Another example
+
+SELECT first_name || ' ' || last_name AS full_name FROM table_name; 
