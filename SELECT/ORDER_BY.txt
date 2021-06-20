@@ -1,0 +1,23 @@
+ORDER_BY
+
+Allows you to sort rows in ascending or descending order
+
+// order results alphebatically by first_name, in descending order
+SELECT first_name FROM customer ORDER BY first_name DESC;
+
+// order results by last_name, and first_name
+// if a users share a last_name, then it will sort alphebatically on first_name
+SELECT last_name, first_name FROM customers
+ORDER BY last_name ASC, first_name ASC;
+
+LENGTH() - returns length of string
+
+SELECT first_name FROM customers ORDER BY LENGTH(first_name);
+
+ORDER BY with NULL
+
+SELECT first_name FROM customers
+ORDER BY first_name NULLS FIRST;
+
+SELECT first_name FROM customers
+ORDER BY first_name NULLS LAST;
