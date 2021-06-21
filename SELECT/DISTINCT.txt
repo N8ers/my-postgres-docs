@@ -1,0 +1,13 @@
+// removes duplicate rows from a result set
+SELECT DISTINCT column_1 FROM table_name;
+
+// you can also select TWO values that both need to be distinct
+// the combination of values will be used for evaluating the duplicate
+SELECT DISTINCT column_1, column_2 FROM table_name;
+
+// what if we want to remove duplicates, but get more than that one column?
+// we will use the ON keyword
+SELECT DISTINCT ON column_1, column_2 FROM table_name;
+
+// it is best practice to use ORDER BY when using DISTINCT ON
+SELECT DISTINCT ON column_1, column_2 FROM table_name ORDER BY column_1;
