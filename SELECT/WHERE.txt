@@ -1,0 +1,22 @@
+// where clause, filters rows based on condition
+SELECT select_list FROM table_name WHERE conditional
+
+// you CANNOT reference aliases in the WHERE clause
+
+COMPARISON AND LOGICAL OPERATORS:
+=, >, =>, <, =< (you know these)
+<> or != (not equal)
+AND, OR (you know these)
+IN (return true if a value matches any value in a list)
+BETWEEN (return true if a value is between a range of values)
+LIKE (return true if matches a pattern)
+IS NULL (return true if a value is NULL)
+NOT (Negate the result of other operations)
+
+// Some examples
+SELECT first_name FROM customers WHERE first_name === 'Goon';
+SELECT first_name FROM customers WHERE first_name === 'Goon' AND last_name === 'Bean';
+SELECT first_name FROM customers WHERE first_name IN ('Tsuki', 'Tazeki', 'Skoogert');
+SELECT first_name FROM customers WHERE first_name LIKE 'N8%';
+SELECT first_name FROM customers WHERE LENGTH(first_name) BETWEEN 3 AND 5;
+SELECT first_name FROM customers WHERE first_name <> 'Job';
