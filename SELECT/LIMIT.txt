@@ -1,0 +1,8 @@
+// LIMIT constrains the number of rows returned
+SELECT users FROM customers LIMIT 100;
+
+// OFFSET can be used in congunction with LIMIT
+// OFFSET lets you skip things
+SELECT users FROM customers LIMIT 100 OFFSET 100;
+// this will show users from 200-300
+
