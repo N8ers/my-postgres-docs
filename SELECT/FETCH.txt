@@ -1,0 +1,9 @@
+// retrieve a portion of rows returned by a query
+// it is functionally equilivant to LIMIT, but LIMIT is NOT an SQL-standard
+// if you need to make your app compatible with other database systems
+// you should use FETCH over LIMIT
+
+SELECT title FROM film
+ORDER BY title
+FETCH FIRST 5 ROW ONLY;
+
