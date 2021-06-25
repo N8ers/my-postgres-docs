@@ -1,0 +1,12 @@
+// IN - you can use it in the WHERE caluse to check if a value matches from a list
+SLELECT * FROM users WHERE first_name IN ('Tsuki', 'Taziki', 'BHB');
+
+// NOT IN - the inverse
+SELECT customer_id FROM rentals WHERE customer_id NOT IN (1, 2);
+
+// IN can be a subquery
+SELECT customer_id FROM customer 
+WHERE customer_id IN (
+  SELECT customer_id FROM rental WHERE return_date = 'today'
+);
+
