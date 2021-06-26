@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages
+## Welcome to GitHub Pages (edited)
 
 You can use the [editor on GitHub](https://github.com/N8ers/my-postgres-docs/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
