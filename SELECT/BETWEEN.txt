@@ -1,0 +1,2 @@
+// BETWEEN operator lets you pick from a range between 2 values
+SELECT price FROM products BETWEEN 20 AND 30; 
