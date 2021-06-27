@@ -1,10 +1,28 @@
-## Welcome to GitHub Pages (edited)
+## My Postgres Docs
+### Notes on postgres documentation
 
-You can use the [editor on GitHub](https://github.com/N8ers/my-postgres-docs/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+### PSQL basics (Linux)
+To enter `psql` run `sudo -i -u postgres`. This connects you to the `postgres` account on your server. Then type `psql` to enter... psql.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+- `\q`  takes you to postgres command prompt
+- `exit` exits you from psql
+- `\l` list databses
+- `\c <db name>` enter a database
 
-### Markdown
+### SELECT
+- select
+- alias
+- order by
+- distinct
+- where
+- limit
+- fetch
+- in
+- between
+- like
+
+
+### Markdown Reference
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
@@ -28,10 +46,3 @@ Syntax highlighted code block
 
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/N8ers/my-postgres-docs/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
