@@ -1,0 +1,15 @@
+// Using the LIKE key word along with 
+// Wildcard ('%') at the start and/or end will do a fuzzy search
+SELECT first_name FROM customer WHERE first_name LIKE '%er%';
+
+// You can also use '_' to say something starts or ends with something
+SELECT first_name FROM customers WHERE first_name LIKE '_s';
+
+// These can be combined
+SELECT first_name FROM customers WHERE first_name LIKE '_her%';
+
+// You can also use NOT LIKE
+SELECT first_name FROM customers WHERE first_name NOT LIKE 'Jen%';
+
+// iLIKE - checks for case-sensitivity
+SELECT first_name FROM customers WHERE first_name ILIKE 'Mc%';
