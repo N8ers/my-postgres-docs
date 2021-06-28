@@ -1,5 +1,4 @@
-## My Postgres Docs
-### Notes on postgres documentation
+## My Notes on Postgres
 
 ### PSQL basics (Linux)
 To enter `psql` run `sudo -i -u postgres`. This connects you to the `postgres` account on your server. Then type `psql` to enter... psql.
@@ -10,9 +9,42 @@ To enter `psql` run `sudo -i -u postgres`. This connects you to the `postgres` a
 - `\c <db name>` enter a database
 
 ### SELECT
-- select
-- alias
-- order by
+- `SELECT` retrieves data from a single table.
+  ```sql
+  SELECT item_we_want, another_item FROM table_name;
+  ```
+
+- `ALIAS` changes the name of the column that's returned with keyword `AS`.
+  ```sql
+  SELECT colmn_name alias_name FROM table_name;
+  ```
+  ```sql
+  SELECT first_name || ' ' || last_name AS full_name FROM table_name;
+  ```
+
+- `ORDER BY` allows you to sort rows in ascending (ASC) or descending (DESC) order.
+  ```sql
+  SELECT first_name FROM customer ORDER BY first_name DESC;
+  ```
+  You can select this for multipule fields.
+  ```sql
+  SELECT first_name, last_name FROM customers ORDER BY last_name ASC, first_name ASC;
+  ```
+  ORDER BY can also be used on number fields
+  ```sql
+  SELECT first_name FROM customers ORDER BY LENGTH(first_name);
+  ```
+  NULLS this keyword lets you select how null values will be used
+  ```sql
+  SELECT item FROM table ORDER BY with NULL;
+  ``` 
+  ```sql
+  SELECT item FROM table ORDER BY item NULLS FIRST;
+  ```
+  ```sql
+  SELECT item FROM table ORDER BY item NULLS LAST;
+  ```
+
 - distinct
 - where
 - limit
