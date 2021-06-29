@@ -1,0 +1,4 @@
+// IS NULL - checks if a vlaue is NULL
+
+SELECT * FROM table WHERE first_name IS NULL;
+SELECT * FROM table WHERE first_name IS NOT NULL;
