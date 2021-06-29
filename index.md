@@ -45,7 +45,14 @@ To enter `psql` run `sudo -i -u postgres`. This connects you to the `postgres` a
   SELECT item FROM table ORDER BY item NULLS LAST;
   ```
 
-- distinct
+- `DISTINCT` removes duplicate rows from a result set.
+  ```sql
+  SELECT DISTINCT column_1 FROM table_name;
+  ```
+  `DISTINCT` can be combined with multiple columns with `ON`. It's best practice to include `ORDER BY` with `DISTINCT ON`.
+  ```sql
+  SELECT DISTINCT ON column_1, column_2 FROM table_name ORDER BY column_1;
+  ```
 - where
 - limit
 - fetch
