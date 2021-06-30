@@ -14,8 +14,8 @@ IS NULL (return true if a value is NULL)
 NOT (Negate the result of other operations)
 
 // Some examples
-SELECT first_name FROM customers WHERE first_name === 'Goon';
-SELECT first_name FROM customers WHERE first_name === 'Goon' AND last_name === 'Bean';
+SELECT first_name FROM customers WHERE first_name = 'Goon';
+SELECT first_name FROM customers WHERE first_name = 'Goon' AND last_name = 'Bean';
 SELECT first_name FROM customers WHERE first_name IN ('Tsuki', 'Tazeki', 'Skoogert');
 SELECT first_name FROM customers WHERE first_name LIKE 'N8%';
 SELECT first_name FROM customers WHERE LENGTH(first_name) BETWEEN 3 AND 5;

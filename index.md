@@ -53,7 +53,34 @@ To enter `psql` run `sudo -i -u postgres`. This connects you to the `postgres` a
   ```sql
   SELECT DISTINCT ON column_1, column_2 FROM table_name ORDER BY column_1;
   ```
-- where
+- `WHERE` filters rows based on condition. You CANNOT reference aliases in the `WHERE` cluase.
+  Comparison and Logic Operators Available
+  - `=`, `>`, `=>`, `<`, `<=`
+  - `<>` or `!=` (not equal)
+    ```sql
+    SELECT first_name FROM customers WHERE first_name <> 'Job';
+    ```
+  - `AND` `OR`
+    ```sql
+    SELECT first_name FROM customers WHERE first_name = 'Goon' AND last_name = 'Bean';
+    ```
+  - `IN` returns true if a value matches any value in a list
+    ```sql
+    SELECT first_name FROM customers WHERE first_name IN ('Tsuki', 'Tazeki', 'Skoogert');
+    ```
+  - `BETWEEN` returns true if a value is between a range of values
+    ```sql
+    SELECT first_name FROM customers WHERE LENGTH(first_name) BETWEEN 3 AND 5;
+    ```
+  - `LIKE` returns true if it matches a pattern
+    ```sql
+    SELECT first_name FROM customers WHERE first_name LIKE 'N8%';
+    ```
+  (TODO - give these two examples)
+  - `IS NULL` retruns true if a value is NULL
+  - `NOT` negate the result of other operations
+
+
 - limit
 - fetch
 - in
