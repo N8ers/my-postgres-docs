@@ -79,9 +79,16 @@ To enter `psql` run `sudo -i -u postgres`. This connects you to the `postgres` a
   (TODO - give these two examples)
   - `IS NULL` retruns true if a value is NULL
   - `NOT` negate the result of other operations
+  - `LIMIT` - constrains the number of rows returned
+  ```sql
+  SELECT users FROM customers LIMIT 1000;
+  ```
+  `OFFSET` can be used in congunction with `LIMIT` to 'page' or 'skip' result
+  ```sql
+  SELECT users FROM customers LIMIT 100 OFFSET 100;
+  ```
+  The above will return users from 200-300.
 
-
-- limit
 - fetch
 - in
 - between
