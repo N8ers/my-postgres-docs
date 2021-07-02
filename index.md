@@ -93,7 +93,16 @@ To enter `psql` run `sudo -i -u postgres`. This connects you to the `postgres` a
   ```sql
   SELECT title FROM film ORDER BY title FETCH FIRST 5 ROW ONLY;
   ```
-- in
+  - `IN` you can use `IN` with `WHERE` to check if a value matches from a list or subquery.
+  ```sql
+  SELECT * FROM users WHERE first_name IN ('Tsuki', 'Taziki', 'BHB');
+  SELECT customer_id FROM rentals WHERE custimer_id NOT IN (1,2);
+  SELECT customer_id FROM customer
+  WHERE customer_id IN (
+    SELECT customer_id FROM rental WHERE return_date = 'today';
+  );
+  ```
+
 - between
 - like
 
