@@ -103,7 +103,11 @@ To enter `psql` run `sudo -i -u postgres`. This connects you to the `postgres` a
   );
   ```
 
-- between
+- `BETWEEN` this operator returns values within a range of 2 values;
+  ```sql
+  SELECT price FROM products BETWEEN 20 AND 30;
+  ```
+
 - like
 
 
