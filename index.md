@@ -89,7 +89,10 @@ To enter `psql` run `sudo -i -u postgres`. This connects you to the `postgres` a
   ```
   The above will return users from 200-300.
 
-- fetch
+  - `FETCH` retrieves a portion of rows returned by a query. It is functionally equilivant to `LIMIT`, but `LIMIT` is NOT an SQL-standard. If you need to make your app compatible with other database systems use `FETCH` instead of `LIMIT`.
+  ```sql
+  SELECT title FROM film ORDER BY title FETCH FIRST 5 ROW ONLY;
+  ```
 - in
 - between
 - like
