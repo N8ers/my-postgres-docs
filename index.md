@@ -108,7 +108,25 @@ To enter `psql` run `sudo -i -u postgres`. This connects you to the `postgres` a
   SELECT price FROM products BETWEEN 20 AND 30;
   ```
 
-- like
+- `LIKE` returns items that follow a pattern
+  `%` wildcard - at the start or end will do a fuzzy search
+  ```sql
+  SELECT first_name FROM customers WHERE first_name LIKE '%er%';
+  ```
+  `_` returns when something starts or ends with something
+  ```sql
+  SELECT first_name FROM customers WHERE first_name LIKE '_s';
+  ```
+  `NOT LIKE` returns results that do not match pattern
+  ```sql
+  SELECT first_name FROM customers WHERE first_name NOT LIKE 'jen%';
+  ```
+  `ILIKE` returns results that follow a pattern and are case-sensitive
+  ```sql
+  SELECT first_name FROM custimers WHERE first_name ILIKE '%Mc%';
+  ```
+
+- `IS NULL`
 
 
 ### Markdown Reference
