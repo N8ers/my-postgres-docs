@@ -126,7 +126,11 @@ To enter `psql` run `sudo -i -u postgres`. This connects you to the `postgres` a
   SELECT first_name FROM custimers WHERE first_name ILIKE '%Mc%';
   ```
 
-- `IS NULL`
+- `NULL / IS NULL` checks if a value is null
+  ```sql
+  SELECT * FROM table WHERE first_name IS NULL; 
+  SELECT * FROM table WHERE first_name IS NOT NULL; 
+  ```
 
 
 ### Markdown Reference
