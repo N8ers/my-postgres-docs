@@ -76,9 +76,17 @@ To enter `psql` run `sudo -i -u postgres`. This connects you to the `postgres` a
     ```sql
     SELECT first_name FROM customers WHERE first_name LIKE 'N8%';
     ```
-  (TODO - give these two examples)
   - `IS NULL` retruns true if a value is NULL
+  ```sql
+  SELECT * FROM table WHERE first_name IS NULL;
+  ```
   - `NOT` negate the result of other operations
+  ```sql
+  SELECT * FROM table WHERE item NOT IN ('I', 'Me', 'Mine');
+  SELECT * FROM table WHERE item IS NOT NULL;
+  SELECT * FROM table WHERE item NOT LIKE '%Na%';
+  SELECT * FROM table WHERE item NOT BETWEEN 32 AND 600;
+  ```
   - `LIMIT` - constrains the number of rows returned
   ```sql
   SELECT users FROM customers LIMIT 1000;
@@ -132,6 +140,9 @@ To enter `psql` run `sudo -i -u postgres`. This connects you to the `postgres` a
   SELECT * FROM table WHERE first_name IS NOT NULL; 
   ```
 
+### JOINS
+
+### DATA TYPES
 
 ### Markdown Reference
 
