@@ -169,6 +169,40 @@ CREATE TABLE account_roles (
   ```
 
 ### JOINS
+`INNER JOIN` joins values in the columns of the first table with the values in the columns in the second table. The result will be a new row that contains columns from both tables. Values that do not match both tables will not be returned.
+```sql
+SELECT fruit_a, fruit_b FROM basket_a INNER JOIN basket_b ON fruit_a = fruit_b;
++- fruit_a -+- fruit_b -+
+| Apple     | Apple     |
++-----------+-----------|
+```
+
+`LEFT JOIN` or `LEFT OUTER JOIN` joins values from the first table, and if there are not matchs in the second table, the second tables columns will return null.
+```sql
+SELECT fruit_a, fruit_b FROM basket_a LEFT JOIN basket_b ON fruit_a = fruit_b;
++- fruit_a -+- fruit_b -+
+| Apple     | Apple     |
+| Banana    | [null]    |
++-----------+-----------|
+```
+
+`RIGHT JOIN` this is the invers of `LEFT JOIN`.
+```sql
+SELECT fruit_a, fruit_b FROM basket_a RIGHT JOIN basket_b ON fruit_a = fruit_b;
++- fruit_a -+- fruit_b -+
+| Apple     | Apple     |
+| [null]    | Orange    |
++-----------+-----------|
+```
+
+`FULL OUTER JOIN` returns result set from both left and right tables, if there is no match the row will be null.
+```sql
+SELECT fruit_a, fruit_b FROM basket_a RIGHT JOIN basket_b ON fruit_a = fruit_b;
++- fruit_a -+- fruit_b -+
+| Apple     | Apple     |
+| [null]    | [null]    |
++-----------+-----------|
+```
 
 ### DATA TYPES
 
