@@ -35,7 +35,6 @@ CREATE TABLE account_roles (
 ```
 
 
-
 ### SELECT
 - `SELECT` retrieves data from a single table.
   ```sql
@@ -174,7 +173,7 @@ CREATE TABLE account_roles (
 SELECT fruit_a, fruit_b FROM basket_a INNER JOIN basket_b ON fruit_a = fruit_b;
 +- fruit_a -+- fruit_b -+
 | Apple     | Apple     |
-+-----------+-----------|
++-----------+-----------+
 ```
 
 `LEFT JOIN` or `LEFT OUTER JOIN` joins values from the first table, and if there are not matchs in the second table, the second tables columns will return null.
@@ -183,7 +182,7 @@ SELECT fruit_a, fruit_b FROM basket_a LEFT JOIN basket_b ON fruit_a = fruit_b;
 +- fruit_a -+- fruit_b -+
 | Apple     | Apple     |
 | Banana    | [null]    |
-+-----------+-----------|
++-----------+-----------+
 ```
 
 `RIGHT JOIN` this is the invers of `LEFT JOIN`.
@@ -192,7 +191,7 @@ SELECT fruit_a, fruit_b FROM basket_a RIGHT JOIN basket_b ON fruit_a = fruit_b;
 +- fruit_a -+- fruit_b -+
 | Apple     | Apple     |
 | [null]    | Orange    |
-+-----------+-----------|
++-----------+-----------+
 ```
 
 `FULL OUTER JOIN` returns result set from both left and right tables, if there is no match the row will be null.
@@ -201,7 +200,12 @@ SELECT fruit_a, fruit_b FROM basket_a RIGHT JOIN basket_b ON fruit_a = fruit_b;
 +- fruit_a -+- fruit_b -+
 | Apple     | Apple     |
 | [null]    | [null]    |
-+-----------+-----------|
++-----------+-----------+
+```
+
+`Table aliases` temporarily assign tables new names during a query. These are needed when doing a self join.
+```sql 
+a_very_long_table_name AS alias
 ```
 
 ### DATA TYPES
