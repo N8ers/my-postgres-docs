@@ -203,6 +203,37 @@ SELECT fruit_a, fruit_b FROM basket_a RIGHT JOIN basket_b ON fruit_a = fruit_b;
 +-----------+-----------+
 ```
 
+`CROSS JOIN` allows you to produce a Cartesian Product or rows.
+Cartesian Product of A and B, A={7, 8} B={2, 4, 6} Product={7-2, 7-4, 7-6, 8-2, 8-4, 8-6} 
+```sql
+table_a
++- label -+
+| A       |
+| B       |
++---------+
+
+table_b
++- score -+
+| 1       |
+| 2       |
+| 3       |
++---------+
+
+THESE 3 QUERIES ARE THE SAME:
+SELECT * FROM table_a CROSS JOIN table_b; (this one is easiest to read IMO)
+SELECT * FROM table_a, table_b;
+SELECT * FROM table_a INNER JOING table_b ON true;
+
++- label -+- score -+
+| A       | 1       |
+| B       | 1       |
+| A       | 2       |
+| B       | 2       |
+| A       | 3       |
+| B       | 3       |
++---------+---------+
+```
+
 `Table aliases` temporarily assign tables new names during a query. These are needed when doing a self join.
 ```sql 
 a_very_long_table_name AS alias
