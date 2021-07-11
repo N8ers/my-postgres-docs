@@ -233,6 +233,28 @@ SELECT * FROM table_a INNER JOING table_b ON true;
 | B       | 3       |
 +---------+---------+
 ```
+`NATURAL JOIN` creates an implicit join based onthe same conlumn names in the joined table.
+It does this by automatically joining the table on `FOREIGN KEY`.
+A `NATURAL JOIN` can use be `NATURAL INNER JOIN`, `NATURAL LEFT JOIN`, `NATURAL RIGHT JOIN`
+
+```sql
+table categories
++- categories -+
+| 'Laptop'     |
++--------------+
+
+table products
++- product_name -+- category_id -+
+| 'Think Pad'    | 1             |
++----------------+---------------+
+
+SELECT * FROM products NATURAL JOIN categories;
+Result: 
++- category_id -+- product_id -+- product_name -+- category_name -+
+| 1             | 1            | 'Think Pad'    | 'Laptop'        |
++---------------+--------------+----------------+-----------------+
+```
+
 
 `Table aliases` temporarily assign tables new names during a query. These are needed when doing a self join.
 ```sql 
