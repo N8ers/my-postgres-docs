@@ -167,6 +167,29 @@ CREATE TABLE account_roles (
   SELECT * FROM table WHERE first_name IS NOT NULL; 
   ```
 
+- `GROUP BY` allows you to divide rows into groups. It will return distinct rows. It can be used with Aggrate Functions and math.
+  ```sql
+  SELECT column_1, column_2 FROM table_name GROUP BY column_1, column_2;
+
+  # returns total amount each customer has paid
+  SELECT customer_id SUM(amount) FROM payment GROUP BY customer_id;
+
+  # returns total payments of each customer
+  SELECT first_name, SUM (amount) AS amount
+  FROM payment
+  JOIN customer USING (customer_id)
+  GROUP BY full_name
+  ORDER BY amount;
+
+  # returns number of payment transactions each staff has completed
+  SELECT staff_id, COUNT (payment_id)
+  FROM payment GROUP BY  staff_id;
+
+  # returns payments by date 
+  SELECT DATE(payment_date) paid_date, SUM(amount) sum
+  FROM payment GROUP BY DATE(payment_date);
+  ```
+
 ### JOINS
 `INNER JOIN` joins values in the columns of the first table with the values in the columns in the second table. The result will be a new row that contains columns from both tables. Values that do not match both tables will not be returned.
 ```sql
