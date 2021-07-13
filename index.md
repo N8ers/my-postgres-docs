@@ -189,6 +189,17 @@ CREATE TABLE account_roles (
   SELECT DATE(payment_date) paid_date, SUM(amount) sum
   FROM payment GROUP BY DATE(payment_date);
   ```
+- `HAVING` specifies a search condition for a group or an aggregate. `HAVING` is to `GROUP BY` what `WHERE` is to `SELECT`.
+  ```sql
+  SELECT column_1 FROM table_name GROUP BY column_1 HAVING condition;
+  
+  # finds total amount for each customer
+  SELECT customer_id, SUM (amount) FROM payment GROUP BY customer_id;
+
+  # finds total amount for each customer, who has spent over 200
+  SELECT customer_id, SUM (amount) FROM payment GROUP BY customer_id HAVING SUM (amount) > 200;
+  ```
+
 
 ### JOINS
 `INNER JOIN` joins values in the columns of the first table with the values in the columns in the second table. The result will be a new row that contains columns from both tables. Values that do not match both tables will not be returned.
