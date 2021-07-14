@@ -189,6 +189,7 @@ CREATE TABLE account_roles (
   SELECT DATE(payment_date) paid_date, SUM(amount) sum
   FROM payment GROUP BY DATE(payment_date);
   ```
+
   - `HAVING` specifies a search condition for a group or an aggregate. `HAVING` is to `GROUP BY` what `WHERE` is to `SELECT`.
   ```sql
   SELECT column_1 FROM table_name GROUP BY column_1 HAVING condition;
@@ -200,7 +201,7 @@ CREATE TABLE account_roles (
   SELECT customer_id, SUM (amount) FROM payment GROUP BY customer_id HAVING SUM (amount) > 200;
   ```
 
-- `UNION`combines results of two or more `SELECT` statements 
+- `UNION` combines results of two or more `SELECT` statements 
   - the numner and order of columns in the select must be the same
   - the data types must be compatible
   ```sql
