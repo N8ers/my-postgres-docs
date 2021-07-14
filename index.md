@@ -138,12 +138,12 @@ CREATE TABLE account_roles (
   );
   ```
 
-- `BETWEEN` this operator returns values within a range of 2 values;
+  - `BETWEEN` this operator returns values within a range of 2 values;
   ```sql
   SELECT price FROM products BETWEEN 20 AND 30;
   ```
 
-- `LIKE` returns items that follow a pattern
+  - `LIKE` returns items that follow a pattern
   `%` wildcard - at the start or end will do a fuzzy search
   ```sql
   SELECT first_name FROM customers WHERE first_name LIKE '%er%';
@@ -161,7 +161,7 @@ CREATE TABLE account_roles (
   SELECT first_name FROM custimers WHERE first_name ILIKE '%Mc%';
   ```
 
-- `NULL / IS NULL` checks if a value is null
+  - `NULL / IS NULL` checks if a value is null
   ```sql
   SELECT * FROM table WHERE first_name IS NULL; 
   SELECT * FROM table WHERE first_name IS NOT NULL; 
@@ -189,7 +189,7 @@ CREATE TABLE account_roles (
   SELECT DATE(payment_date) paid_date, SUM(amount) sum
   FROM payment GROUP BY DATE(payment_date);
   ```
-- `HAVING` specifies a search condition for a group or an aggregate. `HAVING` is to `GROUP BY` what `WHERE` is to `SELECT`.
+  - `HAVING` specifies a search condition for a group or an aggregate. `HAVING` is to `GROUP BY` what `WHERE` is to `SELECT`.
   ```sql
   SELECT column_1 FROM table_name GROUP BY column_1 HAVING condition;
   
@@ -199,6 +199,30 @@ CREATE TABLE account_roles (
   # finds total amount for each customer, who has spent over 200
   SELECT customer_id, SUM (amount) FROM payment GROUP BY customer_id HAVING SUM (amount) > 200;
   ```
+
+- `UNION`combines results of two or more `SELECT` statements 
+  - the numner and order of columns in the select must be the same
+  - the data types must be compatible
+  ```sql
+  SELECT column_1 FROM table_1 UNION SELECT column_1 FROM table_2;
+
+  # this UNION combines tables 'top_rated_films' and 'most_popupar_films'
+  SELECT * FROM top_rated_films
+  UNION
+  SELECT * FROM most_popular_films;
+
+  # UNION ALL combines result sets and INCLUDES duplicates, standard UNION ignores dups
+  SELECT * FROM top_rated_films
+  UNION ALL
+  SELECT * FROM most_popular_films;
+
+  # use GROUP BY to order results
+  SELECT * FROM top_rated_films
+  UNION ALL
+  SELECT * FROM most_popular_films
+  ORDER BY titls;
+  ```
+
 
 
 ### JOINS
