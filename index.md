@@ -33,7 +33,14 @@ CREATE TABLE account_roles (
   FOREIGN KEY (user_id) REFERENCES accounts (user_id)
 );
 ```
+Databases
+```sql
+# create new database
+CREATE DATABASE database_name;
 
+# drop database
+DROP DATABASE [ IF EXISTS ] database_name;
+```
 
 ### SELECT
 - `SELECT` retrieves data from a single table.
