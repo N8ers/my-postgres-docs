@@ -191,6 +191,7 @@ CREATE TABLE account_roles (
   ```
 
   - `HAVING` specifies a search condition for a group or an aggregate. `HAVING` is to `GROUP BY` what `WHERE` is to `SELECT`.
+  
   ```sql
   SELECT column_1 FROM table_name GROUP BY column_1 HAVING condition;
   
@@ -224,6 +225,20 @@ CREATE TABLE account_roles (
   ORDER BY titls;
   ```
 
+- `INTERSECT` combines result sets of two or more select statements into one result set.
+  - the number of columns and their order in the `SELECT` clause must be the same
+  - the data types must be compatible
+  ```sql
+  SELECT select_list FROM table_a
+  INTERSECT
+  SELECT select_list FROM table_b
+  ORDER BY sort_expression;
+
+  # get popular films that are also top rated films (films that are in BOTH tables)
+  SELECT * FROM most_popular_films
+  INTERSECT
+  SELECT * FROM top_rated_films;
+  ```
 
 
 ### JOINS
