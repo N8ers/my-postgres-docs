@@ -247,6 +247,17 @@ DROP DATABASE [ IF EXISTS ] database_name;
   SELECT * FROM top_rated_films;
   ```
 
+- `EXCEPT` retruns distinct rows from the first query that are not in the second
+  - the number of columns and their orders must be the same in the two queries
+  - data types of the respective columns must be compatible
+
+  ```sql
+  # returns top-rated films that are not popular
+  SELECT * FROM top_rated_films
+  EXCEPT
+  SELECT * FROM most_popular_films;
+  ```
+
 
 ### JOINS
 `INNER JOIN` joins values in the columns of the first table with the values in the columns in the second table. The result will be a new row that contains columns from both tables. Values that do not match both tables will not be returned.
