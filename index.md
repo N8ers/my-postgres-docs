@@ -303,6 +303,12 @@ DROP DATABASE [ IF EXISTS ] database_name;
   SELECT * FROM most_popular_films;
   ```
 
+- `GROUPING SET` a set of comma-seperated columns in parentheses you group by using the `GROUP BY` clause
+  ```sql
+  SELECT c1, c2 FROM table_name
+  GROUP BY GROUPING SETS ((c1, c2), (c1), (c2));
+  ```
+
 ### JOINS
 
 `INNER JOIN` joins values in the columns of the first table with the values in the columns in the second table. The result will be a new row that contains columns from both tables. Values that do not match both tables will not be returned.
