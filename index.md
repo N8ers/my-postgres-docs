@@ -47,7 +47,7 @@ CREATE DATABASE database_name;
 DROP DATABASE [ IF EXISTS ] database_name;
 ```
 
-### SELECT
+### Querying Data
 
 - `SELECT` retrieves data from a single table.
 
@@ -59,9 +59,7 @@ DROP DATABASE [ IF EXISTS ] database_name;
 
   ```sql
   SELECT colmn_name alias_name FROM table_name;
-  ```
 
-  ```sql
   SELECT first_name || ' ' || last_name AS full_name FROM table_name;
   ```
 
@@ -69,42 +67,32 @@ DROP DATABASE [ IF EXISTS ] database_name;
 
   ```sql
   SELECT first_name FROM customer ORDER BY first_name DESC;
-  ```
 
-  You can select this for multipule fields.
-
-  ```sql
+  # You can select this for multipule fields.
   SELECT first_name, last_name FROM customers ORDER BY last_name ASC, first_name ASC;
-  ```
 
-  ORDER BY can also be used on number fields
-
-  ```sql
+  # ORDER BY can also be used on number fields
   SELECT first_name FROM customers ORDER BY LENGTH(first_name);
-  ```
 
-  NULLS this keyword lets you select how null values will be used
-
-  ```sql
+  # NULLS this keyword lets you select how null values will be used
   SELECT item FROM table ORDER BY with NULL;
-  ```
 
-  ```sql
   SELECT item FROM table ORDER BY item NULLS FIRST;
-  ```
 
-  ```sql
   SELECT item FROM table ORDER BY item NULLS LAST;
   ```
 
 - `DISTINCT` removes duplicate rows from a result set.
+
   ```sql
   SELECT DISTINCT column_1 FROM table_name;
-  ```
-  `DISTINCT` can be combined with multiple columns with `ON`. It's best practice to include `ORDER BY` with `DISTINCT ON`.
-  ```sql
+  # `DISTINCT` can be combined with multiple columns with `ON`. It's best practice to include `ORDER BY` with `DISTINCT ON`.
+
   SELECT DISTINCT ON column_1, column_2 FROM table_name ORDER BY column_1;
   ```
+
+### Filtering Data
+
 - `WHERE` filters rows based on condition. You CANNOT reference aliases in the `WHERE` cluase.
   Comparison and Logic Operators Available
 
@@ -182,15 +170,12 @@ DROP DATABASE [ IF EXISTS ] database_name;
   ```
 
   - `LIKE` returns items that follow a pattern
-    `%` wildcard - at the start or end will do a fuzzy search
 
   ```sql
+  # `%` wildcard - at the start or end will do a fuzzy search
   SELECT first_name FROM customers WHERE first_name LIKE '%er%';
-  ```
 
-  `_` returns when something starts or ends with something
-
-  ```sql
+  # `_` returns when something starts or ends with something
   SELECT first_name FROM customers WHERE first_name LIKE '_s';
   ```
 
@@ -213,103 +198,7 @@ DROP DATABASE [ IF EXISTS ] database_name;
   SELECT * FROM table WHERE first_name IS NOT NULL;
   ```
 
-- `GROUP BY` allows you to divide rows into groups. It will return distinct rows. It can be used with Aggrate Functions and math.
-
-  ```sql
-  SELECT column_1, column_2 FROM table_name GROUP BY column_1, column_2;
-
-  # returns total amount each customer has paid
-  SELECT customer_id SUM(amount) FROM payment GROUP BY customer_id;
-
-  # returns total payments of each customer
-  SELECT first_name, SUM (amount) AS amount
-  FROM payment
-  JOIN customer USING (customer_id)
-  GROUP BY full_name
-  ORDER BY amount;
-
-  # returns number of payment transactions each staff has completed
-  SELECT staff_id, COUNT (payment_id)
-  FROM payment GROUP BY  staff_id;
-
-  # returns payments by date
-  SELECT DATE(payment_date) paid_date, SUM(amount) sum
-  FROM payment GROUP BY DATE(payment_date);
-  ```
-
-  - `HAVING` specifies a search condition for a group or an aggregate. `HAVING` is to `GROUP BY` what `WHERE` is to `SELECT`.
-
-  ```sql
-  SELECT column_1 FROM table_name GROUP BY column_1 HAVING condition;
-
-  # finds total amount for each customer
-  SELECT customer_id, SUM (amount) FROM payment GROUP BY customer_id;
-
-  # finds total amount for each customer, who has spent over 200
-  SELECT customer_id, SUM (amount) FROM payment GROUP BY customer_id HAVING SUM (amount) > 200;
-  ```
-
-- `UNION` combines results of two or more `SELECT` statements
-
-  - the numner and order of columns in the select must be the same
-  - the data types must be compatible
-
-  ```sql
-  SELECT column_1 FROM table_1 UNION SELECT column_1 FROM table_2;
-
-  # this UNION combines tables 'top_rated_films' and 'most_popupar_films'
-  SELECT * FROM top_rated_films
-  UNION
-  SELECT * FROM most_popular_films;
-
-  # UNION ALL combines result sets and INCLUDES duplicates, standard UNION ignores dups
-  SELECT * FROM top_rated_films
-  UNION ALL
-  SELECT * FROM most_popular_films;
-
-  # use GROUP BY to order results
-  SELECT * FROM top_rated_films
-  UNION ALL
-  SELECT * FROM most_popular_films
-  ORDER BY titls;
-  ```
-
-- `INTERSECT` combines result sets of two or more select statements into one result set.
-
-  - the number of columns and their order in the `SELECT` clause must be the same
-  - the data types must be compatible
-
-  ```sql
-  SELECT select_list FROM table_a
-  INTERSECT
-  SELECT select_list FROM table_b
-  ORDER BY sort_expression;
-
-  # get popular films that are also top rated films (films that are in BOTH tables)
-  SELECT * FROM most_popular_films
-  INTERSECT
-  SELECT * FROM top_rated_films;
-  ```
-
-- `EXCEPT` retruns distinct rows from the first query that are not in the second
-
-  - the number of columns and their orders must be the same in the two queries
-  - data types of the respective columns must be compatible
-
-  ```sql
-  # returns top-rated films that are not popular
-  SELECT * FROM top_rated_films
-  EXCEPT
-  SELECT * FROM most_popular_films;
-  ```
-
-- `GROUPING SET` a set of comma-seperated columns in parentheses you group by using the `GROUP BY` clause
-  ```sql
-  SELECT c1, c2 FROM table_name
-  GROUP BY GROUPING SETS ((c1, c2), (c1), (c2));
-  ```
-
-### JOINS
+### Joining Data
 
 `INNER JOIN` joins values in the columns of the first table with the values in the columns in the second table. The result will be a new row that contains columns from both tables. Values that do not match both tables will not be returned.
 
@@ -409,6 +298,113 @@ Result:
 ```sql
 a_very_long_table_name AS alias
 ```
+
+### Grouping Data
+
+- `GROUP BY` allows you to divide rows into groups. It will return distinct rows. It can be used with Aggrate Functions and math.
+
+  ```sql
+  SELECT column_1, column_2 FROM table_name GROUP BY column_1, column_2;
+
+  # returns total amount each customer has paid
+  SELECT customer_id SUM(amount) FROM payment GROUP BY customer_id;
+
+  # returns total payments of each customer
+  SELECT first_name, SUM (amount) AS amount
+  FROM payment
+  JOIN customer USING (customer_id)
+  GROUP BY full_name
+  ORDER BY amount;
+
+  # returns number of payment transactions each staff has completed
+  SELECT staff_id, COUNT (payment_id)
+  FROM payment GROUP BY  staff_id;
+
+  # returns payments by date
+  SELECT DATE(payment_date) paid_date, SUM(amount) sum
+  FROM payment GROUP BY DATE(payment_date);
+  ```
+
+  - `HAVING` specifies a search condition for a group or an aggregate. `HAVING` is to `GROUP BY` what `WHERE` is to `SELECT`.
+
+  ```sql
+  SELECT column_1 FROM table_name GROUP BY column_1 HAVING condition;
+
+  # finds total amount for each customer
+  SELECT customer_id, SUM (amount) FROM payment GROUP BY customer_id;
+
+  # finds total amount for each customer, who has spent over 200
+  SELECT customer_id, SUM (amount) FROM payment GROUP BY customer_id HAVING SUM (amount) > 200;
+  ```
+
+- `UNION` combines results of two or more `SELECT` statements
+
+  - the numner and order of columns in the select must be the same
+  - the data types must be compatible
+
+  ```sql
+  SELECT column_1 FROM table_1 UNION SELECT column_1 FROM table_2;
+
+  # this UNION combines tables 'top_rated_films' and 'most_popupar_films'
+  SELECT * FROM top_rated_films
+  UNION
+  SELECT * FROM most_popular_films;
+
+  # UNION ALL combines result sets and INCLUDES duplicates, standard UNION ignores dups
+  SELECT * FROM top_rated_films
+  UNION ALL
+  SELECT * FROM most_popular_films;
+
+  # use GROUP BY to order results
+  SELECT * FROM top_rated_films
+  UNION ALL
+  SELECT * FROM most_popular_films
+  ORDER BY titls;
+  ```
+
+- `INTERSECT` combines result sets of two or more select statements into one result set.
+
+  - the number of columns and their order in the `SELECT` clause must be the same
+  - the data types must be compatible
+
+  ```sql
+  SELECT select_list FROM table_a
+  INTERSECT
+  SELECT select_list FROM table_b
+  ORDER BY sort_expression;
+
+  # get popular films that are also top rated films (films that are in BOTH tables)
+  SELECT * FROM most_popular_films
+  INTERSECT
+  SELECT * FROM top_rated_films;
+  ```
+
+- `EXCEPT` retruns distinct rows from the first query that are not in the second
+
+  - the number of columns and their orders must be the same in the two queries
+  - data types of the respective columns must be compatible
+
+  ```sql
+  # returns top-rated films that are not popular
+  SELECT * FROM top_rated_films
+  EXCEPT
+  SELECT * FROM most_popular_films;
+  ```
+
+- `GROUPING SET` a set of comma-seperated columns in parentheses you group by using the `GROUP BY` clause
+
+  ```sql
+  SELECT c1, c2 FROM table_name
+  GROUP BY GROUPING SETS ((c1, c2), (c1), (c2));
+  ```
+
+- `CUBE` a cube allows you to generate multiple grouping sets
+
+- `ROLLUP` a shorthand for defining multiple groupling sets. It's different from a `CUBE` becaues it does not generate all posible grouping sets based on the specified columns, it just makes a subset of those.
+
+### Subqueries
+
+### Common Table Expressions
 
 <!--
 ### DATA TYPES
