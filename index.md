@@ -404,7 +404,32 @@ a_very_long_table_name AS alias
 
 ### Subqueries
 
+```sql
+# get the average rental rate of films who have an above average rental rate
+SELECT film_id, title FROM film
+WHERE rental_rate > (
+  SELECT AVG(rental_rate) FROM film
+);
+# the query that is in brackets is called a subquery or inner query. The query that contains the subquery is the outer query (clever I know).
+
+# subquery with the `IN` operator, to get films returned between '2005-05-29' and '2005-05-30'
+SELECT film_id, title FROM film
+WHERE film_id IN (
+  SELECT inventory.film_id FROM rental
+  INNER JOIN inventory ON inventory.inventory_id = rental.inventory_id
+  WHERE return_data BETWEEN '2005-05-29' AND '2005-05-30'
+);
+
+# subquery with `EXISTS`, returns customer where patment is true
+SELECT first_name, last_name FROM customer
+WHERE EXISTS (
+  SELECT 1 FROM payment WHERE payment.customer_id = customer.customer_id
+);
+```
+
 ### Common Table Expressions
+
+### Modifying Data
 
 <!--
 ### DATA TYPES
