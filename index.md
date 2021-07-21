@@ -430,6 +430,7 @@ a_very_long_table_name AS alias
   ```
 
 - `ANY` retrieve data by comparing a value, with a set of values returned by a subquery. The sub query may only return `1` column. `ANY` is equivalent to the `IN` operator.
+
   ```sql
   # find films whose title lengths are greater than the length of the film category.
   SELECT title FROM film
@@ -438,6 +439,16 @@ a_very_long_table_name AS alias
     INNER JOIN film_category USING (film_id)
     GROUP BY category_id
   );
+  ```
+
+- `ALL` query data by comparing a value with a list of values returned by a subquery. `ALL` must be used with a comparision operator.
+  ```sql
+  SELECT title, film FROM film
+  WHERE length > ALL (
+    SELECT ROUND(AVG (length), 2) FROM film
+    GROUP BY rating
+  )
+  ORDER BY length;
   ```
 
 ### Common Table Expressions
