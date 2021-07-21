@@ -442,6 +442,7 @@ a_very_long_table_name AS alias
   ```
 
 - `ALL` query data by comparing a value with a list of values returned by a subquery. `ALL` must be used with a comparision operator.
+
   ```sql
   SELECT title, film FROM film
   WHERE length > ALL (
@@ -449,6 +450,24 @@ a_very_long_table_name AS alias
     GROUP BY rating
   )
   ORDER BY length;
+  ```
+
+- `EXISTS` / `NOT EXISTS` a boolean operator that check for the existance of rows returned by a subquery.
+
+  ```sql
+  # find customers who have at least one payment whose amount is greater than 11.
+  SELECT first_name FROM customer
+  WHERE EXISTS (
+    SELECT 1 FROM payment
+    WHERE payment.customer_id = customer.customer_id
+    AND amount > 11)
+  )
+  ORDER BY first_name;
+
+  # using NULL - the subquery returned `NULL` so the query returned all rows from the cuetomers table
+  SELECT first_name FROM customer
+  WHERE EXISTS( SELECT NULL )
+  ORDER BY first_name;
   ```
 
 ### Common Table Expressions
