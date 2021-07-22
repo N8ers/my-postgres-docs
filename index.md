@@ -498,6 +498,31 @@ FROM staff
 INNER JOIN cte_rental USING (staff_id);
 ```
 
+A `recursive CTE` has 3 elements:
+
+- Non-recursive term: the non-recursive term is a CTE query definition that forms the base result set of the CTE structure
+- Recursive term: the recursive term is one or more CTE query definitions joind with the non-recursive term using the `UNION` or `UNION ALL` operator.
+- Termination check: the recursion stops when no rows are returned from the previous iteration.
+
+Postgres executes a `recursive CTE` in the following sequence
+
+- Execute the non-recursive tem to create the base result set (R0)
+- Execute recursive term with (Ri) as an input to return the result set (Ri+1) as the output
+- Repeat step 2 until an empty set is returned (terminition check)
+- Return the final result set that is a `UNION` or `UNION ALL` of the result set (R0, R1, R2, ...Rn)
+
+```sql
+# recursively go over manger/employees 'tree'
+WITH RECURSIVE subordinates AS (
+  SELECT employee_id, manager_id, full_name FROM employees
+  WHERE employee_id = 2
+  UNION
+  SELECT employees.employee_id, employees.manager_id, employees.full_name
+  FROM employees
+  INNER JOIN subordinates on subordinates.employee_id = employees.manager_id
+) SELECT * FROM subordinantes;
+```
+
 ### Modifying Data
 
 ### Transactions
