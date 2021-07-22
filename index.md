@@ -472,6 +472,32 @@ a_very_long_table_name AS alias
 
 ### Common Table Expressions
 
+`CTE`s are temporary and only exist during the execution of the query. You can use them to make recursive queries.
+
+```sql
+WITH cte_name (column_list) AS (
+  CTE_query_definition
+)
+STATEMENT;
+```
+
+- Specify the CTE name and the columns you want.
+- Inside the body specify a query that returns a result set. If you don't specify the column_list, the select list of the CTE_query_definition will be the column list.
+- Use the CTE like a table or view in the statement, which can be `SELECT`/`INSERT`/`UPDATE`/`DELETE`.
+
+```sql
+# creating the CTE
+WITH cte_rental AS (
+  SELECT staff_id, COUNT(rental_id) AS rental_count FROM rental
+  GROUP BY staff_id
+)
+
+# using the CTE
+SELECT staff.staff_id, first_name, rental_count
+FROM staff
+INNER JOIN cte_rental USING (staff_id);
+```
+
 ### Modifying Data
 
 ### Transactions
