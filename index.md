@@ -564,6 +564,22 @@ WITH RECURSIVE subordinates AS (
   SET last_name = 'The Baby Cat'
   WHERE first_name = 'Tsuki'
   RETURNING * AS tsukis_name;
+
+  # `JOIN` a table when updating. To join another table in the `UPDATE` statement, you specify the joined table in the `FROM` and provide the `JOIN` condition in the `WHERE`.
+  UPDATE t1
+  SET t1.c1 = new_value
+  FROM t2
+  WHERE t1.c2 = t2.c2;
+
+  UPDATE users
+  SET users.first_name = 'The Baby Cat'
+  FROM babies
+  WHERE users.id = babies.user_id;
+
+  UPDATE product
+  SET net_price = price - price * discount
+  FROM product_segment
+  WHERE product.segment_id = product_segment.id;
   ```
 
 ### Transactions
