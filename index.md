@@ -540,6 +540,15 @@ WITH RECURSIVE subordinates AS (
   # To `INSERT` a string value, it must be in `SINGLE QUOTES`
   INSERT INTO users (first_name, last_name)
   VALUES ('Tsuki', 'The Cat');
+
+  # `INSERT` multiple rows, and it is returning the ids that were just made
+  INSERT INTO table_name (column_list)
+  VALUES
+    (value_list_1),
+    (value_list_2),
+    ...
+    (value_list_n)
+  RETURNING id;
   ```
 
 ### Transactions
