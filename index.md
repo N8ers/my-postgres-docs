@@ -525,6 +525,23 @@ WITH RECURSIVE subordinates AS (
 
 ### Modifying Data
 
+- `INSERT` inserts data into table
+
+  ```sql
+  # basic `INSERT`
+  INSERT INTO table_name (column_1, column_2)
+  VALUES (value_1, value_2);
+
+  # `RETURNING` returns values that were inserted. You can use aliases for the return value, but it is not nessessary.
+  INSERT INTO table_name (column_1, column_2)
+  VALUES (value_1, value_2)
+  RETURNING * AS values;
+
+  # To `INSERT` a string value, it must be in `SINGLE QUOTES`
+  INSERT INTO users (first_name, last_name)
+  VALUES ('Tsuki', 'The Cat');
+  ```
+
 ### Transactions
 
 <!--
