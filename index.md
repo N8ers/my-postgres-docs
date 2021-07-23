@@ -551,6 +551,21 @@ WITH RECURSIVE subordinates AS (
   RETURNING id;
   ```
 
+- `UPDATE` updates existing data in a table. It can also utilize `RETURNING`
+
+  ```sql
+  UPDATE table_name
+  SET column1 = value1,
+      column2 = value2
+      ...
+  WHERE condition;
+
+  UPDATE users
+  SET last_name = 'The Baby Cat'
+  WHERE first_name = 'Tsuki'
+  RETURNING * AS tsukis_name;
+  ```
+
 ### Transactions
 
 <!--
