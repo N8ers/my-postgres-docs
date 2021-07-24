@@ -582,6 +582,23 @@ WITH RECURSIVE subordinates AS (
   WHERE product.segment_id = product_segment.id;
   ```
 
+- `DELETE` delete data in a table
+
+  ```sql
+  DELETE FROM table_name
+  WHERE condition;
+
+  DELETE FROM table_name
+  WHERE condition
+  RETURNING (select_list -or- *);
+
+  DELETE FROM links WHERE id = 7;
+
+  DELETE FROM links
+  WHERE id IN (6,5)
+  RETURNING *;
+  ```
+
 ### Transactions
 
 <!--
