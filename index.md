@@ -599,6 +599,33 @@ WITH RECURSIVE subordinates AS (
   RETURNING *;
   ```
 
+- `UPSERT` insert or update data if the new row already exists in the table
+
+```sql
+INSERT INTO table_name (column_list)
+VALUES (value_list)
+ON CONFLICT target action;
+
+# the action can be to `DO NOTHING`
+INSERT INTO customers (NAME, email)
+VALUES('Microsoft', 'bill@microsoft.com')
+ON CONFLICT ON CONSTRAINT custmers_name_key
+DO NOTHING;
+
+# alt syntax to the above
+INSERT INTO customers (NAME, email)
+VALUES('Microsoft', 'bill@microsoft.com')
+ON CONFLICT (name)
+DO NOTHING;
+
+# do something
+INSERT INTO customers (name, email)
+VALUES ('Microsoft', 'bill@microsoft.com')
+ON CONFLICT (name)
+DO
+  UPDATE SET email = EXCLUDED.email || ';' || customers.email;
+```
+
 ### Transactions
 
 <!--
