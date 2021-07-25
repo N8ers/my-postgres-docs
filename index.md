@@ -601,32 +601,67 @@ WITH RECURSIVE subordinates AS (
 
 - `UPSERT` insert or update data if the new row already exists in the table
 
-```sql
-INSERT INTO table_name (column_list)
-VALUES (value_list)
-ON CONFLICT target action;
+  ```sql
+  INSERT INTO table_name (column_list)
+  VALUES (value_list)
+  ON CONFLICT target action;
 
-# the action can be to `DO NOTHING`
-INSERT INTO customers (NAME, email)
-VALUES('Microsoft', 'bill@microsoft.com')
-ON CONFLICT ON CONSTRAINT custmers_name_key
-DO NOTHING;
+  # the action can be to `DO NOTHING`
+  INSERT INTO customers (NAME, email)
+  VALUES('Microsoft', 'bill@microsoft.com')
+  ON CONFLICT ON CONSTRAINT custmers_name_key
+  DO NOTHING;
 
-# alt syntax to the above
-INSERT INTO customers (NAME, email)
-VALUES('Microsoft', 'bill@microsoft.com')
-ON CONFLICT (name)
-DO NOTHING;
+  # alt syntax to the above
+  INSERT INTO customers (NAME, email)
+  VALUES('Microsoft', 'bill@microsoft.com')
+  ON CONFLICT (name)
+  DO NOTHING;
 
-# do something
-INSERT INTO customers (name, email)
-VALUES ('Microsoft', 'bill@microsoft.com')
-ON CONFLICT (name)
-DO
-  UPDATE SET email = EXCLUDED.email || ';' || customers.email;
-```
+  # do something
+  INSERT INTO customers (name, email)
+  VALUES ('Microsoft', 'bill@microsoft.com')
+  ON CONFLICT (name)
+  DO
+    UPDATE SET email = EXCLUDED.email || ';' || customers.email;
+  ```
 
 ### Transactions
+
+A database transaction is a single unit of work that consists of one or more operations. A PostgreSQL transaction is `atomic`, `consistent`, `isolated`, and `durable` - (`ACID`).
+`A.C.I.D.`
+
+- atomicity guarentees that the transaction comletes in an all-or-nothing manner
+- consistency ensures the change to data written to the database must be valid and follow predefined rules
+- isolation determines how transaction integrity is visible to other transactions
+- durability makes sure that transactions that have been committed will be stores in the database permanently
+
+To start a transaction use `BEGIN TRANSACTION;`, `BEGIN WORK;`, or `BEGIN;`
+To roll back or undo the changes of the current transaction use `ROLLBACK WORK;` `ROLLBACK TRANSACTION;`, or `ROLLBACK;`
+To commit a transaction use `COMMIT WORK;`, `COMMIT TRANSACTION;`, or `COMMIT;`
+
+```sql
+# start the transaction
+BEGIN;
+
+INSERT INTO users (name)
+VALUES ('Tsuki');
+
+# commit the transaction
+COMMIT;
+
+-------------------------
+
+# start the transaction
+BEGIN;
+
+UPDATE users
+SET name = 'Tsuki the Cat'
+WHERE name = 'Tsuki';
+
+# roll back the change
+ROLLBACK;
+```
 
 <!--
 ### DATA TYPES
